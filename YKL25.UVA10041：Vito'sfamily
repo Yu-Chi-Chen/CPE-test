@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    while (n--) {
+        int len=1;
+        scanf("%d", &len);
+        int c[30000];     //container
+        int temp;
+        for (int i = 0; i < len; i++) { //store number
+            scanf("%d", &c[i]);
+        }
+        //sort : small to big
+        for (int i = 0; i < len; i++) {
+            for (int p = i + 1; p < len; p++) {
+                if (c[p] < c[i]) {
+                    temp = c[p];
+                    c[p] = c[i];
+                    c[i] = temp;
+                }
+            }
+        }
+        if (len % 2 != 0) { //len is odd
+            temp = 0;
+            for (int i = 0; i < len; i++) {
+                temp += abs(c[len / 2] - c[i]);
+            }
+        }
+        else {
+            temp = 0;
+            for (int i = 0; i < len; i++) {
+                temp += abs(c[len / 2] - c[i]);
+            }
+        }
+        printf("%d\n", temp);
+    }
+    return 0;
+}
